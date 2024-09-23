@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\C.Common\C.Common.csproj" />
+  </ItemGroup>
+
 </Project>

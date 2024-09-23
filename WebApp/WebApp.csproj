@@ -12,7 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\B.Repository\B.Repository.csproj" />
+    <ProjectReference Include="..\C.Common\C.Common.csproj" />
+    <ProjectReference Include="..\D.Dal.SqlServer\D.Dal.SqlServer.csproj" />
+    <ProjectReference Include="..\E.Application\E.Application.csproj" />
   </ItemGroup>
 
 </Project>
