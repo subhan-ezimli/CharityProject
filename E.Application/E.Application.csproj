@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="AutoMapper\" />
-    <Folder Include="CQRS\User\Command\Response\" />
-    <Folder Include="CQRS\User\Command\Request\" />
-    <Folder Include="CQRS\User\Handler\CommandHandler\" />
     <Folder Include="CQRS\User\Handler\QueryHandler\" />
     <Folder Include="CQRS\User\Query\Response\" />
     <Folder Include="CQRS\User\Query\Request\" />
@@ -23,12 +20,13 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.10.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\A.Domain\A.Domain.csproj" />
     <ProjectReference Include="..\B.Repository\B.Repository.csproj" />
     <ProjectReference Include="..\C.Common\C.Common.csproj" />
     <ProjectReference Include="..\D.Dal.SqlServer\D.Dal.SqlServer.csproj" />

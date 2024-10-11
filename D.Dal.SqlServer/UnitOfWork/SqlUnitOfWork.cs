@@ -19,7 +19,6 @@ public class SqlUnitOfWork : IUnitOfWork
 
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
 
-
     public async Task<int> SaveChanges()
     {
         return await _context.SaveChangesAsync();

@@ -1,4 +1,6 @@
-﻿using D.Dal.SqlServer.Context;
+﻿using B.Repository.Common;
+using D.Dal.SqlServer.Context;
+using D.Dal.SqlServer.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
+
 
         return services;
     }
