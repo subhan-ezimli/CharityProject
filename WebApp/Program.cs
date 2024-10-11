@@ -9,16 +9,7 @@ using WebApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-//builder.Services.AddScoped<IUnitOfWork, SqlUnitOfWork>((provider) =>
-//{
-//    var dbContext = provider.GetRequiredService<AppDbContext>();
-//    return new SqlUnitOfWork(dbContext);
-//});
-
-//app.UseHttpsRedirection();
-
+ 
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -29,13 +20,6 @@ builder.Services.AddSqlServerServices(connectionString);
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IUSerContext, HttpUserContext>();
-
-builder.Services.AddScoped<IUnitOfWork, SqlUnitOfWork>(provider =>
-{
-    var dbContext = provider.GetRequiredService<AppDbContext>();
-    return new SqlUnitOfWork(dbContext);
-}
-    );
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

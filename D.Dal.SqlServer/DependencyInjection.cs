@@ -13,6 +13,12 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(connectionString));
 
+        services.AddScoped<IUnitOfWork, SqlUnitOfWork>(provider =>
+        {
+            var dbContext = provider.GetRequiredService<AppDbContext>();
+            return new SqlUnitOfWork(dbContext);
+        }
+            );
 
         return services;
     }

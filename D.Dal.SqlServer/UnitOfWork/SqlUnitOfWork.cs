@@ -16,8 +16,10 @@ public class SqlUnitOfWork : IUnitOfWork
     }
 
     public SqlUserRepository _userRepository;
+    public SqlUploadFileRepository _uploadFileRepository;
 
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
+    public IUploadFileRepository UploadFileRepository => _uploadFileRepository ?? new SqlUploadFileRepository(_context);
 
     public async Task<int> SaveChanges()
     {
