@@ -8,7 +8,6 @@ using E.Application.CQRS.UploadFile.Command.Response;
 using E.Application.Security;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Client;
 using System.Runtime.CompilerServices;
 
 namespace E.Application.CQRS.UploadFile.Handler.CommandHandler;
@@ -41,7 +40,7 @@ public class CreateUploadFileCommandHandler : IRequestHandler<CreateUploadFileCo
             await formFile.CopyToAsync(stream, cancellationToken);
         }
 
-        var uploadedFileEntity = new A.Domain.Entities.UploadFile()
+        var fileEntity = new A.Domain.Entities.UploadFile()
         {
             FileNameOnDisk = guid,
             FilePath = fullPath,
@@ -50,22 +49,20 @@ public class CreateUploadFileCommandHandler : IRequestHandler<CreateUploadFileCo
             OriginalFileName = formFile.FileName,
             UploadedDate = DateTime.Now
         };
-
-        await _unitOfWork.UploadFileRepository.AddAsync(uploadedFileEntity);
+        await _unitOfWork.UploadFileRepository.AddAsync(fileEntity);
         await _unitOfWork.SaveChanges();
 
-        return new TypedResponseModel<CreateUploadFileCommandResponse>
+        var response = new TypedResponseModel<CreateUploadFileCommandResponse>()
         {
             Data = new CreateUploadFileCommandResponse
             {
-                Id = uploadedFileEntity.Id,
                 CreatedDate = currentDate,
                 FileSize = formFile.Length,
+                Id = fileEntity.Id,
                 MimeType = formFile.ContentType.ToString(),
                 Name = formFile.FileName,
-
             }
         };
-
+        return response;
     }
 }

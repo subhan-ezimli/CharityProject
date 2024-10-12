@@ -8,7 +8,7 @@ public class SqlUploadFileRepository : IUploadFileRepository
 {
     private readonly AppDbContext _context;
 
-    public SqlUploadFileRepository (AppDbContext context)
+    public SqlUploadFileRepository(AppDbContext context)
     {
         _context = context;
     }
