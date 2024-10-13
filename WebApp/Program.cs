@@ -1,7 +1,4 @@
-using B.Repository.Common;
 using D.Dal.SqlServer;
-using D.Dal.SqlServer.Context;
-using D.Dal.SqlServer.UnitOfWork;
 using E.Application;
 using E.Application.Security;
 using Microsoft.AspNetCore.Cors.Infrastructure;

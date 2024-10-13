@@ -5,11 +5,9 @@ namespace WebApp.Controllers;
 
 public class UploadFileController : BaseController
 {
-
     [HttpPost]
     public async Task<IActionResult> AddAsync([FromForm] CreateUploadFileCommandRequest request)
     {
         return Ok(await Sender.Send(request));
-
     }
 }

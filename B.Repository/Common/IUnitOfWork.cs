@@ -6,7 +6,8 @@ namespace B.Repository.Common
     {
         public IUserRepository UserRepository { get; }
         public IUploadFileRepository UploadFileRepository { get; }
+        public IHelpRequestRepository HelpRequestRepository { get; }
 
-        Task<int> SaveChanges();
+        Task<int> SaveChanges(CancellationToken cancellationToken);
     }
 }

@@ -1,14 +1,10 @@
-﻿using A.Domain.Entities;
-using B.Repository.Common;
+﻿using B.Repository.Common;
 using C.Common.Extensions;
 using C.Common.GlobalResponses.Generics;
-using D.Dal.SqlServer.Context;
 using E.Application.CQRS.UploadFile.Command.Request;
 using E.Application.CQRS.UploadFile.Command.Response;
-using E.Application.Security;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using System.Runtime.CompilerServices;
 
 namespace E.Application.CQRS.UploadFile.Handler.CommandHandler;
 
@@ -49,8 +45,8 @@ public class CreateUploadFileCommandHandler : IRequestHandler<CreateUploadFileCo
             OriginalFileName = formFile.FileName,
             UploadedDate = DateTime.Now
         };
-        await _unitOfWork.UploadFileRepository.AddAsync(fileEntity);
-        await _unitOfWork.SaveChanges();
+        await _unitOfWork.UploadFileRepository.AddAsync(fileEntity, cancellationToken);
+        await _unitOfWork.SaveChanges(cancellationToken);
 
         var response = new TypedResponseModel<CreateUploadFileCommandResponse>()
         {

@@ -17,12 +17,14 @@ public class SqlUnitOfWork : IUnitOfWork
 
     public SqlUserRepository _userRepository;
     public SqlUploadFileRepository _uploadFileRepository;
+    public SqlHelpRequestRepository _helpRequestRepository;
 
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
     public IUploadFileRepository UploadFileRepository => _uploadFileRepository ?? new SqlUploadFileRepository(_context);
+    public IHelpRequestRepository HelpRequestRepository => _helpRequestRepository ?? new SqlHelpRequestRepository(_context);
 
-    public async Task<int> SaveChanges()
+    public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
-        return await _context.SaveChangesAsync();
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 }

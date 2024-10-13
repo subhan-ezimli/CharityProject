@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,7 +12,6 @@
     <Folder Include="CQRS\User\Handler\QueryHandler\" />
     <Folder Include="CQRS\User\Query\Response\" />
     <Folder Include="CQRS\User\Query\Request\" />
-    <Folder Include="DTOs\" />
     <Folder Include="PipelineBehaviours\" />
   </ItemGroup>
 

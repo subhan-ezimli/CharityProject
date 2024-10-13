@@ -12,21 +12,21 @@ public class SqlUserRepository : IUserRepository
     {
         _context = context;
     }
-    public async Task AddAsync(User user)
+    public async Task AddAsync(User user, CancellationToken cancellationToken)
     {
         user.CreatedDate = DateTime.Now;
-        await _context.Users.AddAsync(user);
+        await _context.Users.AddAsync(user, cancellationToken);
     }
 
-    public async Task DeleteAsync(User user)
+    public async Task DeleteAsync(User user, CancellationToken cancellationToken)
     {
         user.Isdeleted = true;
         _context.Users.Remove(user);
     }
 
-    public async Task<User> GetByIdAsync(int id)
+    public async Task<User> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return await _context.Users.FindAsync(id);
+        return await _context.Users.FindAsync(id, cancellationToken);
     }
 
     public async Task UpdateAsync(User user)

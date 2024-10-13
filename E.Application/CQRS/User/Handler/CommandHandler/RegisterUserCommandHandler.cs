@@ -25,9 +25,9 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommandReq
         user.CreatedDate = DateTime.Now;
         user.BirthDate = DateTime.Now;
 
-        await _unitOfwork.UserRepository.AddAsync(user);
+        await _unitOfwork.UserRepository.AddAsync(user, cancellationToken);
 
-        await _unitOfwork.SaveChanges();
+        await _unitOfwork.SaveChanges(cancellationToken);
 
         return new TypedResponseModel<RegisterUserCommandResponse>()
         {

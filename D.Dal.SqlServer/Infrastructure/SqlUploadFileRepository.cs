@@ -13,12 +13,12 @@ public class SqlUploadFileRepository : IUploadFileRepository
         _context = context;
     }
 
-    public async Task AddAsync(UploadFile uploadFile)
+    public async Task AddAsync(UploadFile uploadFile, CancellationToken cancellationToken)
     {
-        await _context.UploadFiles.AddAsync(uploadFile);
+        await _context.UploadFiles.AddAsync(uploadFile, cancellationToken);
     }
 
-    public Task<UploadFile> GetByIdAsync(int id)
+    public Task<UploadFile> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
