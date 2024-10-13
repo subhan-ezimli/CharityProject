@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<UploadFile> UploadFiles { get; set; }
     public DbSet<HelpRequest> HelpRequests { get; set; }
+    public DbSet<Project> Projects { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

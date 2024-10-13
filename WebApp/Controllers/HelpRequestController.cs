@@ -19,5 +19,7 @@ public class HelpRequestController : BaseController
         var response = await Sender.Send(request);
         return Ok(response);
     }
+
+
 }
 

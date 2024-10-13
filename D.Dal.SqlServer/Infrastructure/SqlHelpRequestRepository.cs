@@ -11,12 +11,12 @@ public class SqlHelpRequestRepository : IHelpRequestRepository
     {
         _context = context;
     }
+
     public async Task AddAsync(HelpRequest helpRequest, CancellationToken cancellationToken)
     {
         helpRequest.CreatedDate = DateTime.Now;
         await _context.HelpRequests.AddAsync(helpRequest, cancellationToken);
     }
-
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken)
     {
@@ -36,7 +36,7 @@ public class SqlHelpRequestRepository : IHelpRequestRepository
 
     public async Task<HelpRequest?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return await _context.HelpRequests.FindAsync(id,cancellationToken);
+        return await _context.HelpRequests.FindAsync(id, cancellationToken);
     }
 
     public async Task UpdateAsync(HelpRequest helpRequest)

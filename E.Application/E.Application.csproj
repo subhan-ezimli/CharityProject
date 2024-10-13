@@ -12,7 +12,6 @@
     <Folder Include="CQRS\User\Handler\QueryHandler\" />
     <Folder Include="CQRS\User\Query\Response\" />
     <Folder Include="CQRS\User\Query\Request\" />
-    <Folder Include="PipelineBehaviours\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +22,8 @@
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
