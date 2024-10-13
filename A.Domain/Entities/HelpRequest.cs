@@ -12,6 +12,7 @@ public class HelpRequest
 
     public string PhoneNumber { get; set; }
     public int RegionId { get; set; }
+
     public string Address { get; set; }
     public string ShortInfo { get; set; }
 }
