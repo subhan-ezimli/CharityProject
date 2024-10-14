@@ -27,7 +27,6 @@ public class CreateHelpRequestCommandHandler : IRequestHandler<CreateHelpRequest
             RegionId = request.RegionId,
             PhoneNumber = request.PhoneNumber,
             ShortInfo = request.ShortInfo
-
         };
 
         await _unitOfWork.HelpRequestRepository.AddAsync(helpRequest, cancellationToken);

@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+﻿using E.Application.CQRS.Project.Command.Request;
+using E.Application.CQRS.Project.Query.Request;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
@@ -7,14 +8,15 @@ public class ProjectController : BaseController
 {
 
     [HttpPost]
-    public async Task<IActionResult> AddAsync()
+    public async Task<IActionResult> AddAsync([FromBody] CreateProjectCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> AddAsync([FromRoute] int id)
+    public async Task<IActionResult> UpdateAsync([FromRoute] int id)
     {
         return Ok();
     }
@@ -34,8 +36,9 @@ public class ProjectController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync([FromQuery] GetAllByFilterProjectQueryRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 }

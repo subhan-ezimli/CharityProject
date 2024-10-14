@@ -18,8 +18,9 @@ public class SqlUploadFileRepository : IUploadFileRepository
         await _context.UploadFiles.AddAsync(uploadFile, cancellationToken);
     }
 
-    public Task<UploadFile> GetByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<UploadFile?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _context.UploadFiles.FindAsync(id);
+
     }
 }

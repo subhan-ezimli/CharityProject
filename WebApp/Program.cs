@@ -2,11 +2,13 @@ using D.Dal.SqlServer;
 using E.Application;
 using E.Application.Security;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 using WebApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
- 
+
 
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -22,6 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 
 if (app.Environment.IsDevelopment())

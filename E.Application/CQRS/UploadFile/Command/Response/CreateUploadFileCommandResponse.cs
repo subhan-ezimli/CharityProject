@@ -11,7 +11,7 @@ public class CreateUploadFileCommandResponse
     {
         get
         {
-            return $"https://dev.optima.az:8294/backend/api/UploadFile/download/{Id}";
+            return $"https://localhost:44366/api/UploadFile/download/{Id}";
         }
     }
 }

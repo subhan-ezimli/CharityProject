@@ -5,7 +5,7 @@ using System.Net;
 using System.Text.Json;
 
 namespace WebApp.Middlewares
-{
+{   
 
     public class ExceptionHandlerMiddleware
     {
@@ -74,8 +74,24 @@ namespace WebApp.Middlewares
                     context.Response.StatusCode = (int)statusCode;
                     context.Response.ContentType = "application/json; charset=utf-8";
 
-                    var validationErrors = ex.Errors.Select(e => new { field = e.PropertyName, message = e.ErrorMessage });
-                    var json = JsonSerializer.Serialize(new { errors = validationErrors });
+                    var validationErrors = ex.Errors.Select(e=>e.ErrorMessage).ToList();
+                   // var errorMessages = new List<string>();
+
+                    //foreach (var error in validationErrors)
+                    //{
+                    //    // Add each error message to the list
+                    //    errorMessages.Add(error.message);
+                    //}
+
+                    var responseModel = new ResponseModel(validationErrors)
+                    {
+                        IsSuccess = false  // Indicate failure
+                    };
+
+                    var options = new JsonSerializerOptions() { /*PropertyNamingPolicy = JsonNamingPolicy.CamelCase */};
+                    // var json = JsonSerializer.Serialize(new { errors = validationErrors });
+                    var json = JsonSerializer.Serialize(responseModel, options);
+
                     await context.Response.WriteAsync(json);
                 }
             }
