@@ -15,25 +15,31 @@ public class ProjectController : BaseController
     }
 
     [HttpPut]
-    [Route("{id}")]
-    public async Task<IActionResult> UpdateAsync([FromRoute] int id)
+    public async Task<IActionResult> UpdateAsync([FromBody] UpdateProjectCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpDelete]
     [Route("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id)
     {
-        return Ok();
+        var request = new DeleteProjectCommandRequest()
+        {
+            Id = id
+        };
+
+        return Ok(await Sender.Send(request));
+
     }
 
-    [HttpGet]
-    [Route("{id}")]
-    public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
-    {
-        return Ok();
-    }
+    //[HttpGet]
+    //[Route("{id}")]
+    //public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
+    //{
+    //    return Ok();
+    //}
 
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] GetAllByFilterProjectQueryRequest request)

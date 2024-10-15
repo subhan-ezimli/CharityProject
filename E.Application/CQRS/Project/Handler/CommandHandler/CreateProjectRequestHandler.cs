@@ -4,7 +4,7 @@ using E.Application.CQRS.Project.Command.Request;
 using E.Application.CQRS.Project.Command.Response;
 using MediatR;
 
-namespace E.Application.CQRS.Project.Handler;
+namespace E.Application.CQRS.Project.Handler.CommandHandler;
 
 public class CreateProjectRequestHandler : IRequestHandler<CreateProjectCommandRequest, TypedResponseModel<CreateProjectCommandResponse>>
 {

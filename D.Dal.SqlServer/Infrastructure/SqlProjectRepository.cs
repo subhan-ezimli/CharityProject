@@ -25,7 +25,7 @@ public class SqlProjectRepository : IProjectRepository
 
     public IQueryable<Project> GetAllAsQueryable()
     {
-        return _context.Projects.OrderByDescending(x => x.CreatedDate).AsQueryable();
+        return _context.Projects.Where(x => x.IsDeleted == false).OrderByDescending(x => x.CreatedDate).AsQueryable();
     }
 
     public async Task<Project?> GetByIdAsync(int id, CancellationToken cancellationToken)

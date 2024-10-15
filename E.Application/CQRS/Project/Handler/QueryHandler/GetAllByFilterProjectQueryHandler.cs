@@ -6,7 +6,7 @@ using E.Application.CQRS.Project.Query.Response;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace E.Application.CQRS.Project.Handler;
+namespace E.Application.CQRS.Project.Handler.QueryHandler;
 
 public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterProjectQueryRequest, ResponseModelPagination<GetAllByFilterProjectQueryResponse>>
 {
@@ -33,7 +33,7 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
                 CreatedDate = data.CreatedDate,
                 Header = data.Header,
                 Id = data.Id,
-                FileUrl = $"https://localhost:44366/api/UploadFile/download/[{data.UploadFileId}"
+                FileUrl = $"https://localhost:44366/api/UploadFile/download/{data.UploadFileId}"
             };
             list.Add(project);
         }
