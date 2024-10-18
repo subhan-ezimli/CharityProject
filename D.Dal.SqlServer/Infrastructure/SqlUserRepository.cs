@@ -1,6 +1,7 @@
 ﻿using A.Domain.Entities;
 using B.Repository.Repositories;
 using D.Dal.SqlServer.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace D.Dal.SqlServer.Infrastructure;
 
@@ -24,7 +25,12 @@ public class SqlUserRepository : IUserRepository
         _context.Users.Remove(user);
     }
 
-    public async Task<User> GetByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<User?> FindByEmailAsync(string email, CancellationToken cancellationToken)
+    {
+        return await _context.Users.Where(x=>x.Email==email).FirstOrDefaultAsync();
+    }
+
+    public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
         return await _context.Users.FindAsync(id, cancellationToken);
     }

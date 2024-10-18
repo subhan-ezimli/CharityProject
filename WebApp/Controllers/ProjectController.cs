@@ -1,5 +1,6 @@
 ﻿using E.Application.CQRS.Project.Command.Request;
 using E.Application.CQRS.Project.Query.Request;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;

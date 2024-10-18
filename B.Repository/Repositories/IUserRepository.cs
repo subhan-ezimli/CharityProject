@@ -8,5 +8,6 @@ public interface IUserRepository
     Task UpdateAsync(User user);
     Task DeleteAsync(User user, CancellationToken cancellationToken);
 
-    Task<User> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken);
+    Task<User?> FindByEmailAsync(string email, CancellationToken cancellationToken);
 }

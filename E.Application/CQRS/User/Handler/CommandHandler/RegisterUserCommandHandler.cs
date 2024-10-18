@@ -1,5 +1,6 @@
 ﻿using A.Domain.Entities;
 using B.Repository.Common;
+using C.Common.Extensions;
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.User.Command.Request;
 using E.Application.CQRS.User.Command.Response;
@@ -24,6 +25,11 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommandReq
         user.Surname = request.Surname;
         user.CreatedDate = DateTime.Now;
         user.BirthDate = DateTime.Now;
+        user.UserRole = request.UserRole;
+        user.Email = request.Email;
+
+        var hashedPasswordTuple = PasswordHasher.ComputeStringToSha256Hash(request.Password);
+        user.PasswordHash = hashedPasswordTuple;
 
         await _unitOfwork.UserRepository.AddAsync(user, cancellationToken);
 
