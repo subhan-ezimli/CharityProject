@@ -11,7 +11,7 @@ public class CreateUploadFileCommandResponse
     {
         get
         {
-            return $"https://localhost:44366/api/UploadFile/download/{Id}";
+            return $"http://localhost:5245/api/UploadFile/download/{Id}";
         }
     }
 }

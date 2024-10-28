@@ -34,7 +34,7 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
                 CreatedDate = data.CreatedDate,
                 Header = data.Header,
                 Id = data.Id,
-                FileUrl = $"https://localhost:44366/api/UploadFile/download/{data.UploadFileId}"
+                FileUrl = $"http://localhost:5245/api/UploadFile/download/{data.UploadFileId}"
             };
             list.Add(project);
         }
