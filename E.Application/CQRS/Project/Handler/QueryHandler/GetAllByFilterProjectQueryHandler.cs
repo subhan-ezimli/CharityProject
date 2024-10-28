@@ -25,6 +25,7 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
         datas = datas.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
 
         var list = new List<GetAllByFilterProjectQueryResponse>();
+       
         foreach (var data in datas)
         {
             var project = new GetAllByFilterProjectQueryResponse()
@@ -37,9 +38,10 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
             };
             list.Add(project);
         }
+
         var pagination = new Pagination<GetAllByFilterProjectQueryResponse>()
         {
-            Data = list,
+            Datas = list,
             TotalDataCount = await datas.CountAsync()
         };
 

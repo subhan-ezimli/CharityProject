@@ -28,6 +28,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //}));
 
 
+
 builder.Services.AddScoped<IUSerContext, HttpUserContext>();
 
 
@@ -56,7 +57,7 @@ app.UseMiddleware<CorsMiddleware>();
 
 app.UseAuthorization();
 
-
 app.MapControllers();
 
 app.Run();
+

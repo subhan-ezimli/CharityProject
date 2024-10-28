@@ -53,9 +53,9 @@ public class GetAllByFilterHelpRequestQueryHandler : IRequestHandler<GetAllByFil
 
         var pagination = new Pagination<GetAllByFilterHelpRequestQueryResponse>
         {
-            Data = dataList,
+            Datas = dataList,
             TotalDataCount = datasCount,
-            IsSuccess = true
+            // IsSuccess = true
         };
 
         return new ResponseModelPagination<GetAllByFilterHelpRequestQueryResponse>()

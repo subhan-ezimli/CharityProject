@@ -20,7 +20,6 @@ public class CreateUploadFileCommandHandler : IRequestHandler<CreateUploadFileCo
 
     public async Task<TypedResponseModel<CreateUploadFileCommandResponse>> Handle(CreateUploadFileCommandRequest request, CancellationToken cancellationToken)
     {
-
         var currentDate = DateTime.Now;
         var path = _configuration.GetSection("Data:BasePath:AppFilePhotos").Value;
 
