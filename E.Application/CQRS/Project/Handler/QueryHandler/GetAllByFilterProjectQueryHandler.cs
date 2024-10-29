@@ -45,7 +45,6 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
             TotalDataCount = await datas.CountAsync()
         };
 
-
         return new ResponseModelPagination<GetAllByFilterProjectQueryResponse>()
         {
             Data = pagination
