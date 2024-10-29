@@ -7,6 +7,7 @@ public class GetAllByFilterProjectQueryResponse
 
     public string Header { get; set; }
     public string FileUrl { get; set; }
+    public int UploadFileId { get; set; }
 
     public string Content { get; set; }
 }

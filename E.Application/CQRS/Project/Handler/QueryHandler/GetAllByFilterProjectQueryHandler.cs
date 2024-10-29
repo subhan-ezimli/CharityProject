@@ -20,12 +20,11 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
     public async Task<ResponseModelPagination<GetAllByFilterProjectQueryResponse>> Handle(GetAllByFilterProjectQueryRequest request, CancellationToken cancellationToken)
     {
         var datas = _unitOfWork.ProjectRepository.GetAllAsQueryable();
-        datas = datas.WhereIf(request.Header, x => x.Header.ToLower().Contains(request.Header.ToLower()));
 
         datas = datas.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
 
         var list = new List<GetAllByFilterProjectQueryResponse>();
-       
+
         foreach (var data in datas)
         {
             var project = new GetAllByFilterProjectQueryResponse()
@@ -34,7 +33,8 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
                 CreatedDate = data.CreatedDate,
                 Header = data.Header,
                 Id = data.Id,
-                FileUrl = $"http://localhost:5245/api/UploadFile/download/{data.UploadFileId}"
+                FileUrl = $"http://localhost:5245/api/UploadFile/download/{data.UploadFileId}",
+                UploadFileId = data.UploadFileId
             };
             list.Add(project);
         }
