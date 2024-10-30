@@ -20,11 +20,13 @@ public class SqlUnitOfWork : IUnitOfWork
     public SqlUploadFileRepository _uploadFileRepository;
     public SqlHelpRequestRepository _helpRequestRepository;
     public IProjectRepository _projectRepository;
+    public IBlogRepository _blogRepository;
 
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
     public IUploadFileRepository UploadFileRepository => _uploadFileRepository ?? new SqlUploadFileRepository(_context);
     public IHelpRequestRepository HelpRequestRepository => _helpRequestRepository ?? new SqlHelpRequestRepository(_context);
     public IProjectRepository ProjectRepository => _projectRepository ?? new SqlProjectRepository(_context);
+    public IBlogRepository BlogRepository => _blogRepository ?? new BlogRepository(_context);
 
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {

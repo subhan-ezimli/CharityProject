@@ -1,40 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using E.Application.CQRS.Blog.Command.Request;
+using E.Application.CQRS.Blog.Query.Request;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
 public class BlogController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> AddAsync()
+    public async Task<IActionResult> AddAsync([FromBody] CreateBlogCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpPut]
-    [Route("{id}")]
-    public async Task<IActionResult> AddAsync([FromRoute] int id)
+    public async Task<IActionResult> UpdateAsync([FromBody] UpdateBlogCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpDelete]
     [Route("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id)
     {
-        return Ok();
+        var request = new DeleteBlogCommandRequest()
+        {
+            Id = id
+        };
+
+        return Ok(await Sender.Send(request));
+
     }
 
     [HttpGet]
-    [Route("{id}")]
-    public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
+    public async Task<IActionResult> GetAllAsync([FromQuery] GetAllByFilterBlogQueryRequest request)
     {
-        return Ok();
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
-    {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
 }
