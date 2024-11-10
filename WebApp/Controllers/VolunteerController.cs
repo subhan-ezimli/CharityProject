@@ -1,27 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using E.Application.CQRS.Volunteer.Command.Request;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
 public class VolunteerController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> AddAsync()
+    public async Task<IActionResult> AddAsync([FromBody] CreateVolunteerCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpPut]
-    [Route("{id}")]
-    public async Task<IActionResult> AddAsync([FromRoute] int id)
+    public async Task<IActionResult> UpdateAsync([FromBody] UpdateVolunteerCommandRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
     [HttpDelete]
     [Route("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id)
     {
-        return Ok();
+        var request = new DeleteVolunteerCommandRequest(id);
+        return Ok(await Sender.Send(request));
     }
 
     [HttpGet]
@@ -30,7 +33,6 @@ public class VolunteerController : BaseController
     {
         return Ok();
     }
-
 
     [HttpGet]
     public async Task<IActionResult> GetAllAsync()

@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<Blog> Blogs { get; set; }
     public DbSet<Gallery> Galleries { get; set; }
+    public DbSet<Volunteer> Volunteers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

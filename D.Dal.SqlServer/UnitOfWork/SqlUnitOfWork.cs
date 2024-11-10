@@ -22,6 +22,7 @@ public class SqlUnitOfWork : IUnitOfWork
     public IProjectRepository _projectRepository;
     public IBlogRepository _blogRepository;
     public IGalleryRepository _galleryRepository;
+    public IVolunteerRepository _volunteerRepository;
 
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
     public IUploadFileRepository UploadFileRepository => _uploadFileRepository ?? new SqlUploadFileRepository(_context);
@@ -29,6 +30,7 @@ public class SqlUnitOfWork : IUnitOfWork
     public IProjectRepository ProjectRepository => _projectRepository ?? new SqlProjectRepository(_context);
     public IBlogRepository BlogRepository => _blogRepository ?? new BlogRepository(_context);
     public IGalleryRepository GalleryRepository => _galleryRepository ?? new GalleryRepository(_context);
+    public IVolunteerRepository VolunteerRepository => _volunteerRepository ?? new SqlVolunteerRepository(_context);
 
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
