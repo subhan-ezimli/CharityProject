@@ -9,6 +9,7 @@ namespace B.Repository.Common
         public IHelpRequestRepository HelpRequestRepository { get; }
         public IProjectRepository ProjectRepository { get; }
         public IBlogRepository BlogRepository { get; }
+        public IGalleryRepository GalleryRepository { get; }
 
         Task<int> SaveChanges(CancellationToken cancellationToken);
     }

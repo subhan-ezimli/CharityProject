@@ -18,7 +18,7 @@ public class BlogRepository : IBlogRepository
     {
         blog.IsDeleted = false;
         blog.CreatedDate = DateTime.Now;
-        await _context.Blogs.AddAsync(blog);
+        await _context.Blogs.AddAsync(blog, cancellationToken);
     }
 
     public async Task DeleteAsync(Blog blog, CancellationToken cancellationToken)

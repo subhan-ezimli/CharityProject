@@ -2,9 +2,7 @@
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.Blog.Command.Request;
 using E.Application.CQRS.Blog.Command.Response;
-using E.Application.CQRS.Project.Command.Response;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace E.Application.CQRS.Blog.Handler.CommandHandler;
 
