@@ -19,9 +19,9 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
 
     public async Task<ResponseModelPagination<GetAllByFilterProjectQueryResponse>> Handle(GetAllByFilterProjectQueryRequest request, CancellationToken cancellationToken)
     {
-        var datas = _unitOfWork.ProjectRepository.GetAllAsQueryable();
+        var datasBefore = _unitOfWork.ProjectRepository.GetAllAsQueryable();
 
-        datas = datas.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
+        var datas = datasBefore.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
 
         var list = new List<GetAllByFilterProjectQueryResponse>();
 
@@ -42,7 +42,7 @@ public class GetAllByFilterProjectQueryHandler : IRequestHandler<GetAllByFilterP
         var pagination = new Pagination<GetAllByFilterProjectQueryResponse>()
         {
             Datas = list,
-            TotalDataCount = await datas.CountAsync()
+            TotalDataCount = await datasBefore.CountAsync()
         };
 
         return new ResponseModelPagination<GetAllByFilterProjectQueryResponse>()

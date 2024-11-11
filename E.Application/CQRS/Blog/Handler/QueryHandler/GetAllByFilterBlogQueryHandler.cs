@@ -19,9 +19,9 @@ public class GetAllByFilterBlogQueryHandler : IRequestHandler<GetAllByFilterBlog
 
     public async Task<ResponseModelPagination<GetAllByFilterBlogQueryResponse>> Handle(GetAllByFilterBlogQueryRequest request, CancellationToken cancellationToken)
     {
-        var datas = _unitOfWork.BlogRepository.GetAll();
+        var datasBefore = _unitOfWork.BlogRepository.GetAll();
 
-        datas = datas.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
+        var datas = datasBefore.Skip(request.Limit * (request.Page - 1)).Take(request.Limit);
 
         var list = new List<GetAllByFilterBlogQueryResponse>();
 
@@ -42,7 +42,7 @@ public class GetAllByFilterBlogQueryHandler : IRequestHandler<GetAllByFilterBlog
         var pagination = new Pagination<GetAllByFilterBlogQueryResponse>()
         {
             Datas = list,
-            TotalDataCount = await datas.CountAsync()
+            TotalDataCount = await datasBefore.CountAsync()
         };
 
         return new ResponseModelPagination<GetAllByFilterBlogQueryResponse>()
