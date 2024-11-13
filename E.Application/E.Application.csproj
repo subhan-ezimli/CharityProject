@@ -12,9 +12,6 @@
     <Folder Include="CQRS\User\Handler\QueryHandler\" />
     <Folder Include="CQRS\User\Query\Response\" />
     <Folder Include="CQRS\User\Query\Request\" />
-    <Folder Include="CQRS\Volunteer\Handler\Query\" />
-    <Folder Include="CQRS\Volunteer\Query\Response\" />
-    <Folder Include="CQRS\Volunteer\Query\Request\" />
   </ItemGroup>
 
   <ItemGroup>

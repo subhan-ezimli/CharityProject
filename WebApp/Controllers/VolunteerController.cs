@@ -1,4 +1,5 @@
 ﻿using E.Application.CQRS.Volunteer.Command.Request;
+using E.Application.CQRS.Volunteer.Query.Request;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
@@ -35,9 +36,10 @@ public class VolunteerController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync([FromQuery] GetAllByFilterVolunteerQueryRequest request)
     {
-        return Ok();
+        var response = await Sender.Send(request);
+        return Ok(response);
     }
 
 }
