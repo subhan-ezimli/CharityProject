@@ -18,19 +18,15 @@ public class SqlHelpRequestRepository : IHelpRequestRepository
         await _context.HelpRequests.AddAsync(helpRequest, cancellationToken);
     }
 
-    public async Task DeleteAsync(int id, CancellationToken cancellationToken)
+    public async Task DeleteAsync(HelpRequest helpRequest, CancellationToken cancellationToken)
     {
-        var helpRequest = await _context.HelpRequests.FindAsync(id, cancellationToken);
-        if (helpRequest != null)
-        {
-            helpRequest.IsDeleted = true;
-            _context.HelpRequests.Update(helpRequest);
-        }
+        helpRequest.IsDeleted = true;
+        _context.HelpRequests.Update(helpRequest);
     }
 
     public IQueryable<HelpRequest> GetAllAsQueryable()
     {
-        return _context.HelpRequests.OrderByDescending(x => x.CreatedDate).AsQueryable();
+        return _context.HelpRequests.Where(x => !x.IsDeleted).OrderByDescending(x => x.CreatedDate).AsQueryable();
     }
 
 

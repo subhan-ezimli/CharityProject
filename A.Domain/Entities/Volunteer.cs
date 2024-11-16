@@ -16,5 +16,5 @@
         public string Address { get; set; }
 
         public int UploadFileId { get; set; }
-    }
+    }   
 }

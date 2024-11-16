@@ -6,7 +6,7 @@ public interface IHelpRequestRepository
 {
     Task AddAsync(HelpRequest helpRequest, CancellationToken cancellationToken);
 
-    Task DeleteAsync(int id, CancellationToken cancellationToken);
+    Task DeleteAsync(HelpRequest helpRequest, CancellationToken cancellationToken);
 
     Task UpdateAsync(HelpRequest helpRequest);
 
