@@ -47,7 +47,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, 
             var token = TokenService.CreateToken(authClaims, _configuration);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token); // Convert the token to a string
 
-            var loginUserCommandResponse = new LoginUserCommandResponse() { Token = tokenString, Expiration = token.ValidTo };
+            var loginUserCommandResponse = new LoginUserCommandResponse() { Token = tokenString, Expiration = token.ValidTo, UserRole = (int)user.UserRole };
 
             return new TypedResponseModel<LoginUserCommandResponse>
             {

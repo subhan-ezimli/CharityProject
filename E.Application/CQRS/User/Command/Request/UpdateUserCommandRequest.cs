@@ -13,6 +13,6 @@ public class UpdateUserCommandRequest : IRequest<TypedResponseModel<UpdateUserCo
     public string Surname { get; set; }
     public string FathersName { get; set; }
     public string Password { get; set; }
-    public UserRole UserRole { get; set; }
+    public int UserRole { get; set; }
     public string Email { get; set; }
 }

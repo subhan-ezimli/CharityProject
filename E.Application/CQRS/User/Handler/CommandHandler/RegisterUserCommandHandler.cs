@@ -1,4 +1,5 @@
 ﻿using A.Domain.Entities;
+using A.Domain.Enums;
 using B.Repository.Common;
 using C.Common.Exceptions;
 using C.Common.Extensions;
@@ -27,10 +28,8 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommandReq
         var user = new A.Domain.Entities.User();
 
         user.FathersName = request.FathersName;
-        user.Isdeleted = false;
         user.Name = request.Name;
         user.Surname = request.Surname;
-        user.CreatedDate = DateTime.Now;
         user.BirthDate = DateTime.Now;
         user.UserRole = request.UserRole;
         user.Email = request.Email;

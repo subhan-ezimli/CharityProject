@@ -8,7 +8,7 @@ public class User : BaseEntity
     public bool Isdeleted { get; set; } = false;
 
     public string PasswordHash { get; set; }
-    public UserRole UserRole { get; set; }
+    public int UserRole { get; set; }
 
     public string Name { get; set; }
     public string Surname { get; set; }

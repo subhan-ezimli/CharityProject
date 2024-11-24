@@ -10,4 +10,5 @@ public interface IUserRepository
 
     Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken);
     Task<User?> FindByEmailAsync(string email, CancellationToken cancellationToken);
+    IQueryable<User> GetAllAsQueryable();
 }

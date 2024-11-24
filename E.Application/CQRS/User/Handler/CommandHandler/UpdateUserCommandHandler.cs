@@ -24,13 +24,13 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommandRequest
 
         var checkEmail = await _unitOfWork.UserRepository.FindByEmailAsync(request.Email, cancellationToken);
 
-        if (user != null || checkEmail.Id != user.Id)
+
+        if (user != null && checkEmail.Id != user.Id)
         {
             throw new BadRequestException("Email is allready exist");
         }
 
         user.FathersName = request.FathersName;
-        user.Isdeleted = false;
         user.Name = request.Name;
         user.Surname = request.Surname;
         user.UserRole = request.UserRole;

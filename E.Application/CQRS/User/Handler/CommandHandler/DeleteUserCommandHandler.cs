@@ -1,4 +1,5 @@
 ﻿using B.Repository.Common;
+using C.Common.Exceptions;
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.User.Command.Request;
 using E.Application.CQRS.User.Command.Response;
@@ -13,6 +14,19 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommandRequest
     public async Task<TypedResponseModel<DeleteUserCommandResponse>> Handle(DeleteUserCommandRequest request, CancellationToken cancellationToken)
     {
         var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id, cancellationToken);
-        throw new NotImplementedException();
+        if (user.Isdeleted || user == null)
+        {
+            throw new BadRequestException("user not found");
+        }
+        await _unitOfWork.UserRepository.DeleteAsync(user, cancellationToken);
+        await _unitOfWork.SaveChanges(cancellationToken);
+
+        return new TypedResponseModel<DeleteUserCommandResponse>()
+        {
+            Data = new DeleteUserCommandResponse()
+            {
+                Message = "successfully deleted"
+            }
+        };
     }
 }

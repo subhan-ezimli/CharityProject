@@ -9,9 +9,6 @@
 
   <ItemGroup>
     <Folder Include="AutoMapper\" />
-    <Folder Include="CQRS\User\Handler\QueryHandler\" />
-    <Folder Include="CQRS\User\Query\Response\" />
-    <Folder Include="CQRS\User\Query\Request\" />
     <Folder Include="Validators\BlogValidator\" />
     <Folder Include="Validators\GalleryValidator\" />
     <Folder Include="Validators\UserValidator\" />

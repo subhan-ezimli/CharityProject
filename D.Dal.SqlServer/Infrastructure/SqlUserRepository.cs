@@ -13,6 +13,7 @@ public class SqlUserRepository : IUserRepository
     {
         _context = context;
     }
+
     public async Task AddAsync(User user, CancellationToken cancellationToken)
     {
         user.CreatedDate = DateTime.Now;
@@ -22,17 +23,22 @@ public class SqlUserRepository : IUserRepository
     public async Task DeleteAsync(User user, CancellationToken cancellationToken)
     {
         user.Isdeleted = true;
-        _context.Users.Remove(user);
+        _context.Users.Update(user);
     }
 
     public async Task<User?> FindByEmailAsync(string email, CancellationToken cancellationToken)
     {
-        return await _context.Users.Where(x=>x.Email==email).FirstOrDefaultAsync();
+        return await _context.Users.Where(x => x.Email.ToLower() == email.ToLower() && !x.Isdeleted).FirstOrDefaultAsync();
+    }
+
+    public IQueryable<User> GetAllAsQueryable()
+    {
+        return _context.Users.Where(x => !x.Isdeleted).OrderByDescending(x => x.CreatedDate).AsQueryable();
     }
 
     public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return await _context.Users.FindAsync(id, cancellationToken);
+        return await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(User user)

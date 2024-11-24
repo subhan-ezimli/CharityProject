@@ -1,8 +1,7 @@
 ﻿namespace A.Domain.Enums;
 
-public enum UserRole
+public enum UserRole : int
 {
     Admin = 1,
-    User = 2,
-    ContentManager = 3
+    Moderator = 2
 }
