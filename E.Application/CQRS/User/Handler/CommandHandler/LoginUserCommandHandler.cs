@@ -24,7 +24,6 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, 
         _configuration = configuration;
     }
 
-
     public async Task<TypedResponseModel<LoginUserCommandResponse>> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
     {
         var loginProvider = Guid.NewGuid().ToString(); // Different browsers can have the same user, use this to differentiate them

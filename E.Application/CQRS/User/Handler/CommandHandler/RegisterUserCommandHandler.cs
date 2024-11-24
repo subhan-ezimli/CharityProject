@@ -1,5 +1,6 @@
 ﻿using A.Domain.Entities;
 using B.Repository.Common;
+using C.Common.Exceptions;
 using C.Common.Extensions;
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.User.Command.Request;
@@ -17,6 +18,12 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommandReq
     }
     public async Task<TypedResponseModel<RegisterUserCommandResponse>> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
     {
+        var checkUser = await _unitOfwork.UserRepository.FindByEmailAsync(request.Email, cancellationToken);
+        if (checkUser != null)
+        {
+            throw new BadRequestException("email is allready exist");
+        }
+
         var user = new A.Domain.Entities.User();
 
         user.FathersName = request.FathersName;

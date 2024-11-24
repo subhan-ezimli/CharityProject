@@ -32,7 +32,6 @@ public class ProjectController : BaseController
         };
 
         return Ok(await Sender.Send(request));
-
     }
 
     //[HttpGet]

@@ -5,8 +5,10 @@ using MediatR;
 
 namespace E.Application.CQRS.User.Command.Request;
 
-public class RegisterUserCommandRequest : IRequest<TypedResponseModel<RegisterUserCommandResponse>>
+public class UpdateUserCommandRequest : IRequest<TypedResponseModel<UpdateUserCommandResponse>>
 {
+    public int Id { get; set; }
+
     public string Name { get; set; }
     public string Surname { get; set; }
     public string FathersName { get; set; }

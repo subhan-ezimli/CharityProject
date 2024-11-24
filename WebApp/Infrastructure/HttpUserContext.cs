@@ -13,8 +13,6 @@ public class HttpUserContext : IUSerContext
 
         bool isOkay = int.TryParse(id, out var x);
         _userId = isOkay ? x : null;
-
-
     }
 
     public int? UserId => _userId;

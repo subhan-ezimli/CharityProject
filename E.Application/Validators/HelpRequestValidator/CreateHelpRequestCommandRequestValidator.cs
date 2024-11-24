@@ -28,5 +28,4 @@ internal sealed class CreateHelpRequestCommandRequestValidator : AbstractValidat
        .NotNull();
 
     }
-
 }

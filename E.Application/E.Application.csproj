@@ -12,6 +12,12 @@
     <Folder Include="CQRS\User\Handler\QueryHandler\" />
     <Folder Include="CQRS\User\Query\Response\" />
     <Folder Include="CQRS\User\Query\Request\" />
+    <Folder Include="Validators\BlogValidator\" />
+    <Folder Include="Validators\GalleryValidator\" />
+    <Folder Include="Validators\UserValidator\" />
+    <Folder Include="Validators\UploadFileValidator\" />
+    <Folder Include="Validators\VolunteerValidator\" />
+    <Folder Include="Validators\ProjectValidator\" />
   </ItemGroup>
 
   <ItemGroup>
