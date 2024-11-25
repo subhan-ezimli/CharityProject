@@ -4,6 +4,7 @@ using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.User.Query.Request;
 using E.Application.CQRS.User.Query.Response;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace E.Application.CQRS.User.Handler.QueryHandler
 {
@@ -45,7 +46,8 @@ namespace E.Application.CQRS.User.Handler.QueryHandler
             }
             var pagination = new Pagination<UserGetAllByFilterQueryResponse>()
             {
-                Datas = responseList
+                Datas = responseList,
+                TotalDataCount = await datas.CountAsync()
             };
 
 
