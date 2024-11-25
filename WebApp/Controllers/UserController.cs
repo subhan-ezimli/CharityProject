@@ -46,11 +46,21 @@ public class UserController : BaseController
         return Ok(await Sender.Send(request));
     }
 
-
     [HttpGet]
     public async Task<IActionResult> GetAllAsync([FromQuery] UserGetAllByFilterQueryRequest request)
     {
         var response = await Sender.Send(request);
         return Ok(response);
     }
+
+    [HttpPost]
+    [Route("changePassword")]
+    [Authorize]
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommandRequest request)
+    {
+        var response = await Sender.Send(request);
+        return Ok(response);
+    }
 }
+
+                                                                                                                                                                                    

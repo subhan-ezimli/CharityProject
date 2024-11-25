@@ -44,12 +44,12 @@ namespace E.Application.CQRS.User.Handler.QueryHandler
                 };
                 responseList.Add(dataa);
             }
+
             var pagination = new Pagination<UserGetAllByFilterQueryResponse>()
             {
                 Datas = responseList,
                 TotalDataCount = await datas.CountAsync()
             };
-
 
             return new ResponseModelPagination<UserGetAllByFilterQueryResponse> { Data = pagination };
         }

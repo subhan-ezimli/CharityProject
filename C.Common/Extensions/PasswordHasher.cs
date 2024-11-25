@@ -17,4 +17,14 @@ public static class PasswordHasher
         }
         return stringbuilder.ToString();
     }
+
+    public static bool VerifyPasswordHash(string password, string PasswordHash)
+    {
+        password = ComputeStringToSha256Hash(password);
+        if (password == PasswordHash)
+        {
+            return true;
+        }
+        return false;
+    }
 }
