@@ -2,6 +2,7 @@
 using B.Repository.Repositories;
 using D.Dal.SqlServer.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
 
 namespace D.Dal.SqlServer.Infrastructure;
 
@@ -36,9 +37,10 @@ public class SqlUserRepository : IUserRepository
         return _context.Users.Where(x => !x.Isdeleted).OrderByDescending(x => x.CreatedDate).AsQueryable();
     }
 
-    public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<User> GetByIdAsync(int id)
     {
-        return await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+        // return await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+        return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateAsync(User user)

@@ -20,7 +20,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommandRequest
 
     public async Task<TypedResponseModel<UpdateUserCommandResponse>> Handle(UpdateUserCommandRequest request, CancellationToken cancellationToken)
     {
-        var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id, cancellationToken);
+        var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
 
         var checkEmail = await _unitOfWork.UserRepository.FindByEmailAsync(request.Email, cancellationToken);
 

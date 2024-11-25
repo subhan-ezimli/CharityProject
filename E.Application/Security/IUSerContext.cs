@@ -1,6 +1,6 @@
 ﻿namespace E.Application.Security;
 
-public interface IUSerContext
+public interface IUserContext
 {
     public int? UserId { get; }
 

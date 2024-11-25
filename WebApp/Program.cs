@@ -29,8 +29,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 //}));
 
 
-
-builder.Services.AddScoped<IUSerContext, HttpUserContext>();
+builder.Services.AddScoped<IUserContext, HttpUserContext>();
 
 
 builder.Services.AddEndpointsApiExplorer();
