@@ -1,13 +1,15 @@
-﻿using B.Repository.Common;
+﻿using A.Domain.Entities;
+using B.Repository.Common;
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.Report.Query.Request;
 using E.Application.CQRS.Report.Query.Response;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace E.Application.CQRS.Report.Handler;
 
-public class VolunteerYearlyReportByMonthQueryRequestHandler : IRequestHandler<VolunteerYearlyReportByMonthQueryRequest, ResponseModelList<VolunteerYearlyReportByMonthQueryResponse>>
+public class VolunteerYearlyReportByMonthQueryRequestHandler : IRequestHandler<VolunteerYearlyReportByMonthQueryRequest, ResponseModelPagination<VolunteerYearlyReportByMonthQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
     public VolunteerYearlyReportByMonthQueryRequestHandler(IUnitOfWork unitOfWork)
@@ -15,7 +17,7 @@ public class VolunteerYearlyReportByMonthQueryRequestHandler : IRequestHandler<V
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<ResponseModelList<VolunteerYearlyReportByMonthQueryResponse>> Handle(VolunteerYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
+    public async Task<ResponseModelPagination<VolunteerYearlyReportByMonthQueryResponse>> Handle(VolunteerYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
     {
         var currentYear = DateTime.Now.Year;
         var volunteers = _unitOfWork.VolunteerRepository.GetAllAsQueryable();
@@ -41,9 +43,16 @@ public class VolunteerYearlyReportByMonthQueryRequestHandler : IRequestHandler<V
             result.Add(response);
         }
 
-        return new ResponseModelList<VolunteerYearlyReportByMonthQueryResponse>
+        var pagination = new Pagination<VolunteerYearlyReportByMonthQueryResponse>()
         {
-            Data = result
+            Datas = result,
+            TotalDataCount = await volunteers.CountAsync()
+        };
+
+
+        return new ResponseModelPagination<VolunteerYearlyReportByMonthQueryResponse>
+        {
+            Data = pagination
         };
     }
 }

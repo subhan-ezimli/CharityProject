@@ -3,18 +3,19 @@ using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.Report.Query.Request;
 using E.Application.CQRS.Report.Query.Response;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace E.Application.CQRS.Report.Handler;
 
-public class HelpRequestYearlyReportByMonthQueryRequestHandler : IRequestHandler<HelpRequestYearlyReportByMonthQueryRequest, ResponseModelList<HelpRequestYearlyReportByMonthQueryResponse>>
+public class HelpRequestYearlyReportByMonthQueryRequestHandler : IRequestHandler<HelpRequestYearlyReportByMonthQueryRequest, ResponseModelPagination<HelpRequestYearlyReportByMonthQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
     public HelpRequestYearlyReportByMonthQueryRequestHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
-    public async Task<ResponseModelList<HelpRequestYearlyReportByMonthQueryResponse>> Handle(HelpRequestYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
+    public async Task<ResponseModelPagination<HelpRequestYearlyReportByMonthQueryResponse>> Handle(HelpRequestYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
     {
         var currentYear = DateTime.Now.Year;
         var helpRequests = _unitOfWork.HelpRequestRepository.GetAllAsQueryable();
@@ -40,9 +41,15 @@ public class HelpRequestYearlyReportByMonthQueryRequestHandler : IRequestHandler
             result.Add(response);
         }
 
-        return new ResponseModelList<HelpRequestYearlyReportByMonthQueryResponse>
+        var pagination = new Pagination<HelpRequestYearlyReportByMonthQueryResponse>()
         {
-            Data = result
+            Datas = result,
+            TotalDataCount = await helpRequests.CountAsync()
+        };
+
+        return new ResponseModelPagination<HelpRequestYearlyReportByMonthQueryResponse>
+        {
+            Data = pagination
         };
     }
 }

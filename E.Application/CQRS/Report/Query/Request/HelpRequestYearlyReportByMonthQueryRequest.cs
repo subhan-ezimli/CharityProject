@@ -4,7 +4,7 @@ using MediatR;
 
 namespace E.Application.CQRS.Report.Query.Request;
 
-public class HelpRequestYearlyReportByMonthQueryRequest : IRequest<ResponseModelList<HelpRequestYearlyReportByMonthQueryResponse>>
+public class HelpRequestYearlyReportByMonthQueryRequest : IRequest<ResponseModelPagination<HelpRequestYearlyReportByMonthQueryResponse>>
 {
     public int? Year { get; set; }
 }

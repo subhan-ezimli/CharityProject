@@ -1,14 +1,16 @@
-﻿using B.Repository.Common;
+﻿using A.Domain.Entities;
+using B.Repository.Common;
 using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.Report.Query.Request;
 using E.Application.CQRS.Report.Query.Response;
 using E.Application.Security;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace E.Application.CQRS.Report.Handler;
 
-public class ProjectYearlyReportByMonthQueryRequestHandler : IRequestHandler<ProjectYearlyReportByMonthQueryRequest, ResponseModelList<ProjectYearlyReportByMonthQueryResponse>>
+public class ProjectYearlyReportByMonthQueryRequestHandler : IRequestHandler<ProjectYearlyReportByMonthQueryRequest, ResponseModelPagination<ProjectYearlyReportByMonthQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserContext _userContext;
@@ -18,7 +20,7 @@ public class ProjectYearlyReportByMonthQueryRequestHandler : IRequestHandler<Pro
         _userContext = userContext;
         _unitOfWork = unitOfWork;
     }
-    public async Task<ResponseModelList<ProjectYearlyReportByMonthQueryResponse>> Handle(ProjectYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
+    public async Task<ResponseModelPagination<ProjectYearlyReportByMonthQueryResponse>> Handle(ProjectYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
     {
 
         var currentYear = DateTime.Now.Year;
@@ -45,9 +47,16 @@ public class ProjectYearlyReportByMonthQueryRequestHandler : IRequestHandler<Pro
             result.Add(response);
         }
 
-        return new ResponseModelList<ProjectYearlyReportByMonthQueryResponse>
+        var pagination = new Pagination<ProjectYearlyReportByMonthQueryResponse>()
         {
-            Data = result
+            Datas = result,
+            TotalDataCount = await projects.CountAsync()
+        };
+
+
+        return new ResponseModelPagination<ProjectYearlyReportByMonthQueryResponse>
+        {
+            Data = pagination
         };
     }
 }

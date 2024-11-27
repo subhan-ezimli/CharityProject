@@ -3,18 +3,19 @@ using C.Common.GlobalResponses.Generics;
 using E.Application.CQRS.Report.Query.Request;
 using E.Application.CQRS.Report.Query.Response;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace E.Application.CQRS.Report.Handler;
 
-public class BlogYearlyReportByMonthQueryRequestHandler : IRequestHandler<BlogYearlyReportByMonthQueryRequest, ResponseModelList<BlogYearlyReportByMonthQueryResponse>>
+public class BlogYearlyReportByMonthQueryRequestHandler : IRequestHandler<BlogYearlyReportByMonthQueryRequest, ResponseModelPagination<BlogYearlyReportByMonthQueryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork;
     public BlogYearlyReportByMonthQueryRequestHandler(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
-    public async Task<ResponseModelList<BlogYearlyReportByMonthQueryResponse>> Handle(BlogYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
+    public async Task<ResponseModelPagination<BlogYearlyReportByMonthQueryResponse>> Handle(BlogYearlyReportByMonthQueryRequest request, CancellationToken cancellationToken)
     {
         var currentYear = DateTime.Now.Year;
         var blogs = _unitOfWork.BlogRepository.GetAll();
@@ -40,9 +41,15 @@ public class BlogYearlyReportByMonthQueryRequestHandler : IRequestHandler<BlogYe
             result.Add(response);
         }
 
-        return new ResponseModelList<BlogYearlyReportByMonthQueryResponse>
+        var pagination = new Pagination<BlogYearlyReportByMonthQueryResponse>()
         {
-            Data = result
+            Datas = result,
+            TotalDataCount = await blogs.CountAsync()
+        };
+
+        return new ResponseModelPagination<BlogYearlyReportByMonthQueryResponse>
+        {
+            Data = pagination
         };
     }
 }
