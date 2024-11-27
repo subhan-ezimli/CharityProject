@@ -1,6 +1,7 @@
 using D.Dal.SqlServer;
 using E.Application;
 using E.Application.Security;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using WebApp.Extensions;
 using WebApp.Infrastructure;
@@ -40,15 +41,16 @@ builder.Services.AddAuthenticationDependency(builder.Configuration);
 
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddControllers()
    .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true)
    .AddJsonOptions(options =>
    {
-       options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-       options.JsonSerializerOptions.PropertyNamingPolicy = null;
-       options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-   });
+       //options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+       options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+       //options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 
+   });
 
 var app = builder.Build();
 

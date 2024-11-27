@@ -32,7 +32,17 @@ public class AuthController : BaseController
     [Authorize]
     public async Task<IActionResult> SessionUser()
     {
-        var request = new LoginUserCommandRequest();
+        var request = new SessionUserQueryRequest();
+        var response = await Sender.Send(request);
+        return Ok(response);
+    }
+
+
+    [HttpPut]
+    [Route("updateme")]
+    [Authorize]
+    public async Task<IActionResult> UpdateMeAsync([FromBody] UpdateMeCommandRequest request)
+    {
         var response = await Sender.Send(request);
         return Ok(response);
     }
