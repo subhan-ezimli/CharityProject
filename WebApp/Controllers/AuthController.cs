@@ -7,8 +7,6 @@ namespace WebApp.Controllers;
 
 public class AuthController : BaseController
 {
-
-
     [HttpPost]
     [Route("login")]
     [AllowAnonymous]
