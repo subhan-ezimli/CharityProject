@@ -34,7 +34,7 @@ public class HelpRequestYearlyReportByMonthQueryRequestHandler : IRequestHandler
             {
                 Year = request.Year != null ? (int)request.Year : currentYear,
                 Month = textInfo.ToTitleCase(months.ToString("MMMM", CultureInfo.CreateSpecificCulture("az-latn-AZ"))),
-                Count = helpRequests.Count(),
+                Count = helpRequestsByMonth.Count,
             };
 
             result.Add(response);

@@ -39,7 +39,7 @@ public class ProjectYearlyReportByMonthQueryRequestHandler : IRequestHandler<Pro
             {
                 Year = request.Year != null ? (int)request.Year : currentYear,
                 Month = textInfo.ToTitleCase(months.ToString("MMMM", CultureInfo.CreateSpecificCulture("az-latn-AZ"))),
-                Count = projects.Count(),
+                Count = projectsByMonth.Count,
             };
 
             result.Add(response);

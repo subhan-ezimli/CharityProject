@@ -34,7 +34,7 @@ public class BlogYearlyReportByMonthQueryRequestHandler : IRequestHandler<BlogYe
             {
                 Year = request.Year != null ? (int)request.Year : currentYear,
                 Month = textInfo.ToTitleCase(months.ToString("MMMM", CultureInfo.CreateSpecificCulture("az-latn-AZ"))),
-                Count = blogs.Count(),
+                Count = blogsByMonth.Count,
             };
 
             result.Add(response);
