@@ -1,0 +1,6 @@
+﻿namespace PaymentService.CibPayIntegration.Models.GetOrder.Responses
+{
+    internal class Operation
+    {
+    }
+}
