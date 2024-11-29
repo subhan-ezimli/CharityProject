@@ -1,7 +1,7 @@
-﻿namespace PaymentService.CibPayIntegration.Models.CreateOrder.CreateResponse;
+﻿using PaymentService.CibPayIntegration.Models.GetOrder.Responses;
 
+namespace PaymentService.CibPayIntegration.Models.CreateOrder.CreateResponse;
 public class CreateOrderProviderResponse
 {
-    public List<int> orders { get; set; }
-
+    public List<GetPaymentResponse> orders { get; set; }
 }

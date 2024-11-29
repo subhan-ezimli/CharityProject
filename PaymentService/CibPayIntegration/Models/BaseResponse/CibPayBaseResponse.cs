@@ -10,7 +10,7 @@ public class CibPayBaseResponse
     public HttpStatusCode StatusCode { get; set; }
 }
 
-public class CibPayBaseResponse<T> : CibPayBaseResponse
+public class CibBaseResponse<T> : CibPayBaseResponse
 {
     public T? Data { get; set; }
 }

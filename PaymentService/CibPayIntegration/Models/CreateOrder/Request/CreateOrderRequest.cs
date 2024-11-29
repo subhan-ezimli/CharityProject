@@ -1,5 +1,4 @@
 ﻿namespace PaymentService.CibPayIntegration.Models.CreateOrder.Request;
-
 public class CreateOrderRequest
 {
     public double Amount { get; set; }

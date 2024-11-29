@@ -24,6 +24,8 @@ public class SqlUnitOfWork : IUnitOfWork
     public IGalleryRepository _galleryRepository;
     public IVolunteerRepository _volunteerRepository;
 
+    public IPaymentRepository _paymentRepository;
+
     public IUserRepository UserRepository => _userRepository ??= new SqlUserRepository(_context);
     public IUploadFileRepository UploadFileRepository => _uploadFileRepository ?? new SqlUploadFileRepository(_context);
     public IHelpRequestRepository HelpRequestRepository => _helpRequestRepository ?? new SqlHelpRequestRepository(_context);
@@ -31,9 +33,15 @@ public class SqlUnitOfWork : IUnitOfWork
     public IBlogRepository BlogRepository => _blogRepository ?? new BlogRepository(_context);
     public IGalleryRepository GalleryRepository => _galleryRepository ?? new GalleryRepository(_context);
     public IVolunteerRepository VolunteerRepository => _volunteerRepository ?? new SqlVolunteerRepository(_context);
+    public IPaymentRepository PaymentRepository => _paymentRepository ?? new PaymentRepository(_context);
 
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
         return await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _context.SaveChangesAsync();
     }
 }

@@ -1,6 +1,5 @@
-﻿namespace PaymentService.CibPayIntegration.Models.GetOrder.Responses
+﻿namespace PaymentService.CibPayIntegration.Models.GetOrder.Responses;
+public class Location
 {
-    internal class Location
-    {
-    }
+      public string ip { get; set; }
 }

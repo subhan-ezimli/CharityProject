@@ -1,6 +1,7 @@
 using D.Dal.SqlServer;
 using E.Application;
 using E.Application.Security;
+using PaymentService;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using WebApp.Extensions;
@@ -32,6 +33,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<IUserContext, HttpUserContext>();
 
+builder.Services.AddCibPayServiceIntegration();
 
 builder.Services.AddEndpointsApiExplorer();
 

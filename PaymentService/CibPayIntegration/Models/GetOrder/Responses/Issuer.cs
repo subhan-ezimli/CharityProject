@@ -1,6 +1,7 @@
-﻿namespace PaymentService.CibPayIntegration.Models.GetOrder.Responses
+﻿namespace PaymentService.CibPayIntegration.Models.GetOrder.Responses;
+public class Issuer
 {
-    internal class Issuer
-    {
-    }
+    public string bin { get; set; }
+    public string country { get; set; }
+    public string title { get; set; }
 }

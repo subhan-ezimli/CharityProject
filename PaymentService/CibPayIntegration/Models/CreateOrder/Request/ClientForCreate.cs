@@ -1,5 +1,4 @@
 ﻿namespace PaymentService.CibPayIntegration.Models.CreateOrder.Request;
-
 public class ClientForCreate
 {
     public string Name { get; set; }

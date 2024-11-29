@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using C.Service.Payment.CibPay.Implementations;
+using Microsoft.Extensions.DependencyInjection;
+using PaymentService.CibPayIntegration.Abstractions;
+//using PaymentService.CibPayIntegration.Implementations;
 
-namespace PaymentService
+namespace PaymentService;
+public static class DependencyInjection
 {
-    internal class DependencyInjection
+    public static IServiceCollection AddCibPayServiceIntegration(this IServiceCollection services)
     {
+        services.AddScoped<CibPayService>();
+        services.AddHttpClient();
+        
+        return services;
     }
 }

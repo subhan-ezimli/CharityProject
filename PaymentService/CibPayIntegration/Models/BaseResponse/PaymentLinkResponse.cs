@@ -6,12 +6,11 @@ public class PaymentLinkResponse
 
     public PaymentLinkResponse()
     {
-        PaymentLink = null;
+        PaymentLink = null!;
     }
 
     public PaymentLinkResponse(string paymentLink)
     {
-
-        paymentLink = paymentLink;
+        PaymentLink = paymentLink;
     }
 }
