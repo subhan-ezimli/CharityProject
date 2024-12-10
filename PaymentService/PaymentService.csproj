@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CibPayIntegration\Abstractions\" />
     <Folder Include="CibPayIntegration\Implementations\" />
     <Folder Include="CibPayIntegration\Certificate\" />
   </ItemGroup>
