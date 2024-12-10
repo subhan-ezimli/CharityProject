@@ -10,3 +10,6 @@ public class CreateBlogCommandRequest : IRequest<TypedResponseModel<CreateBlogCo
     public int UploadFileId { get; set; }
     public string Content { get; set; }
 }
+
+
+//test
