@@ -1,5 +1,4 @@
 ﻿using A.Domain.BaseEntities;
-using A.Domain.Enums;
 
 namespace A.Domain.Entities;
 public class User : BaseEntity

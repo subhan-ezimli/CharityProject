@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,6 +17,7 @@
     <ProjectReference Include="..\C.Common\C.Common.csproj" />
     <ProjectReference Include="..\D.Dal.SqlServer\D.Dal.SqlServer.csproj" />
     <ProjectReference Include="..\E.Application\E.Application.csproj" />
+    <ProjectReference Include="..\PaymentService\PaymentService.csproj" />
   </ItemGroup>
 
 </Project>
