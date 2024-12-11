@@ -12,6 +12,9 @@ namespace B.Repository.Common
         public IGalleryRepository GalleryRepository { get; }
         public IVolunteerRepository VolunteerRepository { get; }
 
+
+        public IPaymentRepository PaymentRepository { get; }
+
         Task<int> SaveChanges(CancellationToken cancellationToken);
     }
 }

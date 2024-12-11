@@ -1,4 +1,4 @@
-﻿namespace WebApp.Views.ViewModels;
+﻿namespace WebApp.View.ViewModels; 
 
 public class SuccessViewModel(decimal amount)
 {

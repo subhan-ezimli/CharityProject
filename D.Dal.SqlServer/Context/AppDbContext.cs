@@ -18,6 +18,11 @@ public class AppDbContext : DbContext
     public DbSet<Gallery> Galleries { get; set; }
     public DbSet<Volunteer> Volunteers { get; set; }
 
+
+    public DbSet<PendingPayment> PendingPayments { get; set; }
+    public DbSet<Payment> Payments { get; set; }
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
