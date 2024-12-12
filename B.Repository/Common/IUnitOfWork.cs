@@ -16,5 +16,7 @@ namespace B.Repository.Common
         public IPaymentRepository PaymentRepository { get; }
 
         Task<int> SaveChanges(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync();
+
     }
 }

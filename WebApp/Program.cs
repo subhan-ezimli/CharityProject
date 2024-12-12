@@ -2,6 +2,7 @@ using D.Dal.SqlServer;
 using E.Application;
 using E.Application.Security;
 using PaymentService;
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using WebApp.Extensions;
@@ -9,6 +10,9 @@ using WebApp.Infrastructure;
 using WebApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
+
+ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

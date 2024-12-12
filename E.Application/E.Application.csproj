@@ -35,6 +35,7 @@
     <ProjectReference Include="..\B.Repository\B.Repository.csproj" />
     <ProjectReference Include="..\C.Common\C.Common.csproj" />
     <ProjectReference Include="..\D.Dal.SqlServer\D.Dal.SqlServer.csproj" />
+    <ProjectReference Include="..\PaymentService\PaymentService.csproj" />
   </ItemGroup>
 
 </Project>

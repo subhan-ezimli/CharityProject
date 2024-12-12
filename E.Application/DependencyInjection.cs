@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using E.Application.PaymentProccess;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -11,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddScoped<IOrderService, OrderService>();
 
         return services;
     }

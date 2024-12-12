@@ -1,4 +1,5 @@
-﻿using B.Repository.Common;
+﻿using System.Threading;
+using B.Repository.Common;
 using B.Repository.Repositories;
 using D.Dal.SqlServer.Context;
 using D.Dal.SqlServer.Infrastructure;
@@ -38,5 +39,10 @@ public class SqlUnitOfWork : IUnitOfWork
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
         return await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _context.SaveChangesAsync();
     }
 }

@@ -119,6 +119,7 @@ public class CibPayService
                     language = _language,
                     return_url = _returnUrl
                 },
+
                 client = new
                 {
                     name = command.Name,
@@ -135,7 +136,7 @@ public class CibPayService
         }
         catch (Exception ex)
         {
-            throw new Exception("An unexpected error occurred: " + ex.Message, ex);
+            throw new Exception("An unexpected error occurred: " + ex.InnerException.Message, ex);
         }
     }
 
@@ -216,7 +217,9 @@ public class CibPayService
 
     private X509Certificate2 GetCertificate()
     {
-        var cPath = new CertificatePath();
-        return new X509Certificate2(cPath.CurrentPath, "nBR2SFVWZ02g");
+        //var cPath = new CertificatePath();
+        //string a = cPath.CurrentPath;
+        // return new X509Certificate2(cPath.CurrentPath, "nBR2SFVWZ02g");
+        return new X509Certificate2("D:\\Repos\\CharityProject\\PaymentService\\CibPayIntegration\\Certificate\\taxiapp.p12", "nBR2SFVWZ02g");
     }
 }
